@@ -9,7 +9,7 @@ import (
 func main() {
 	fmt.Println(faktorisasi(4))
 	pemisah(2468)
-	fmt.Println(valid("({)})"))
+	fmt.Println(valid("{{}}"))
 }
 
 func faktorisasi(val int) int {
@@ -46,16 +46,14 @@ func valid(val string) bool {
 		s := strings.Split(val, "")
 		pembagi := len(s) / 2
 		for i := 0; i < pembagi; i++ {
-			for n := len(s); n < pembagi; n-- {
-				if s[i] == "{" && s[n] == "}" {
-					result = true
-				} else if s[i] == "[" && s[n] == "]" {
-					result = true
-				} else if s[i] == "(" && s[n] == ")" {
-					result = true
-				} else {
-					result = false
-				}
+			if s[i] == "{" && s[(len(s)-1)-i] == "}" {
+				result = true
+			} else if s[i] == "(" && s[(len(s)-1)-i] == ")" {
+				result = true
+			} else if s[i] == "[" && s[(len(s)-1)-i] == "]" {
+				result = true
+			} else {
+				result = false
 			}
 		}
 	}
